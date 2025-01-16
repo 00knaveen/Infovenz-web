@@ -6,7 +6,7 @@
     @include('layouts.sidebar')
     <div class="main-content mt-5">
         <section id="expenses" class="card fade-in">
-            <h2 class="d-none product-container">Add New Product</h2>
+            <h2 class="d-none product-container product-container-text">Add New Product</h2>
          @include('product')
          @if(isset($products) && count($products) > 0)
          <h2>Products</h2>

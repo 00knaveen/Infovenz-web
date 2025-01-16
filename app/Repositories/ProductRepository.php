@@ -32,7 +32,33 @@ class ProductRepository{
             ]);
         }
     }
-
+public function updateProduct($userId,$request){
+    try{
+        $product = Product::find($request->product_id);
+        if ($request->hasFile('file')) {
+            $filePath = $request->file('file')->store('products', 'public');
+            } else {
+                $filePath = $request->file;
+           }
+        $product->update([
+            'name' => $request->name,
+            'user_id'=>$userId,
+            'product_category' => $request->product_category,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'description' => $request->description,
+            'file' => $filePath,
+            ]);
+            return $product;
+    }
+    catch(\Exception $e){
+        Log::info([
+            'function'=>'updateProduct',
+            'line'=>$e->getLine(),
+            'message'=>$e->getMessage()
+            ]);
+    }
+}
     public function getAllProducts($userId){
         try{
          return Product::where('user_id',$userId)->get();
@@ -43,6 +69,19 @@ class ProductRepository{
                 'line'=>$e->getLine(),
                 'message'=>$e->getMessage()
                 ]);
+        }
+    }
+
+    public function deleteProductData($id){
+        try{
+            return product::where('id',$id)->where('user_id',Auth::user()->id)->delete();
+        }
+        catch(\Exception $e){
+            Log::info([
+                'function'=>'deleteProductData',
+                'line'=>$e->getLine(),
+                'message'=>$e->getMessage()
+            ]);
         }
     }
 }

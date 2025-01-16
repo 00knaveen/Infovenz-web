@@ -16,7 +16,11 @@ class ProductController extends Controller
     public function addProduct(Request $request){
       $userId = Auth::user()->id;
        $result = $this->productService->saveProduct($userId,$request);
-       if($result){
+       
+       if($result && $request->product_id){
+        return redirect()->route('dashboard')->with('status-success','Product Updated Successfully');
+       }
+      else if($result){
         return redirect()->route('dashboard')->with('status-success','Product Added Successfully');
        }
        else{
@@ -27,5 +31,21 @@ class ProductController extends Controller
         $userId = Auth::user()->id;
         $products = $this->productService->getProducts($userId);
         return view('product-list',compact('products'));
+    }
+    public function deleteProduct($id){
+        if($id){
+          $data = $this->productService->deleteProductDetails($id);
+         if($data){
+            return redirect()->route('dashboard')->with('status-success','Product deleted Successfully');
+         }
+         else{
+            return redirect()->route('dashboard')->with('status-failed','Failed to Product delete');
+
+         }
+        }
+        else{
+            return redirect()->route('dashboard')->with('status-failed','Failed to Product delete');
+
+        }
     }
 }

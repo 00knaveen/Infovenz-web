@@ -260,3 +260,81 @@ body.dark-mode {
     width: 50px;
     height: 50px;
 }
+/* confirmation popup design start */
+.confirmation-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.awsm-dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.awd-content {
+    text-align: center;
+}
+
+.awd-message {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.confirmation-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.awd-ok {
+    background: #2196F3;
+}
+
+.awd-cancel {
+    background: #e2525c;
+}
+
+.awd-cancel:hover {
+    background: #c0392b;
+}
+
+.d-none {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* confirmation popup design end */
