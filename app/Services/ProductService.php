@@ -19,11 +19,18 @@ class ProductService implements ProductInterface{
             'file' => 'required|file|mimes:jpg,jpeg,png|max:2048', // Limit file type and size
             'description' => 'required|string',
         ]);
-
-        return $this->productRepository->saveNewProduct($userId,$request);
+          if($request->product_id){
+            return $this->productRepository->updateProduct($userId,$request);
+          }
+          else{
+            return $this->productRepository->saveNewProduct($userId,$request);
+          }
     }
 
  public function getProducts($userId){
     return $this->productRepository->getAllProducts($userId);
+ }
+ public function deleteProductDetails($id){
+    return $this->productRepository->deleteProductData($id);
  }
 }

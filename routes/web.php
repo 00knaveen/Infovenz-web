@@ -24,5 +24,6 @@ Route::post('/register',[RegisterController::class,'register'])->name('register'
 Route::group(['middleware'=>['auth']],function(){
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
 Route::post('/add/product',[ProductController::class,'addProduct'])->name('addProduct');
+Route::get('/delete/product/{id}',[ProductController::class,'deleteProduct'])->name('deleteProduct');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 });
